@@ -93,7 +93,7 @@ const UserProfileForm = ({
           </FormDescription>
         </div>
         
-        <FormField
+        {/* <FormField
           control={form.control}
           name="avatar"
           render={({ field }) => (
@@ -104,7 +104,7 @@ const UserProfileForm = ({
               </FormControl>
             </FormItem>
           )}
-        />
+        /> */}
 
         <FormField
           control={form.control}

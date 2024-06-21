@@ -12,7 +12,6 @@ export const useGetMyUser = () => {
     const accessToken = await getAccessTokenSilently();
 
     const response = await fetch(`${API_BASE_URL}/api/my/user`, {
-      method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json",
@@ -63,8 +62,7 @@ export const useCreateMyUser = () => {
     }
 
     const data = await response.json();
-    console.log(data)
-    sessionStorage.setItem("userId", data.id); // Store the user id in sessionStorage
+    sessionStorage.setItem("userId", data._id); // Store the user id in sessionStorage
   };
 
   const {

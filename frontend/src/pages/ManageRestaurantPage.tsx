@@ -12,6 +12,7 @@ const ManageRestaurantPage = () => {
   const { createRestaurant, isLoading: isCreateLoading } =
     useCreateMyRestaurant();
   const { restaurant } = useGetMyRestaurant();
+  console.log(restaurant)
   const { updateRestaurant, isLoading: isUpdateLoading } =
     useUpdateMyRestaurant();
 

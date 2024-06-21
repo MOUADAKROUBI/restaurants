@@ -15,7 +15,7 @@ export const useGetMyRestaurant = () => {
       method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`,
-      },
+      }
     });
 
     if (!response.ok) {

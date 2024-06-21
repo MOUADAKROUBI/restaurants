@@ -49,6 +49,13 @@ const HomePage = () => {
             ))
           )
         }
+        {
+          results.length === 0 && (
+            <div className="text-center text-2xl font-bold text-gray-600 mt-10 capitalize">
+              No restaurants found
+            </div>
+          )
+        }
       </div>
 
     </>

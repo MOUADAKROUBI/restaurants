@@ -73,8 +73,16 @@ const SearchPage = () => {
     return <Loading />;
   }
 
-  if (!results?.data || !city) {
+  if (!city) {
     return <NotFound />;
+  }
+
+  if (!results?.data.length) {
+    return (
+      <div className="text-center text-2xl font-bold text-gray-600 mt-10 capitalize">
+        No restaurants found
+      </div>
+    );
   }
 
   return (

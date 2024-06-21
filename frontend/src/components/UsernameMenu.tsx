@@ -11,12 +11,16 @@ import { Button } from "./ui/button";
 
 const UsernameMenu = () => {
   const { user, logout } = useAuth0();
+  const handleLogOut = () => {
+    sessionStorage.removeItem("userId");
+    logout()
+  }
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="flex items-center px-3 font-bold hover:text-orange-500 gap-2">
         <img src={user?.picture} alt="profile avatar" className="w-[40px] rounded-full" />
-        {user?.email}
+        {user?.name}
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem>
@@ -35,7 +39,7 @@ const UsernameMenu = () => {
         <Separator />
         <DropdownMenuItem>
           <Button
-            onClick={() => logout()}
+            onClick={handleLogOut}
             className="flex flex-1 font-bold bg-orange-500"
           >
             Log Out
