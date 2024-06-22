@@ -10,7 +10,6 @@ export const useGetMyUser = () => {
 
   const getMyUserRequest = async (): Promise<User> => {
     const accessToken = await getAccessTokenSilently();
-
     const response = await fetch(`${API_BASE_URL}/api/my/user`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -47,22 +46,28 @@ export const useCreateMyUser = () => {
   const { getAccessTokenSilently } = useAuth0();
 
   const createMyUserRequest = async (user: CreateUserRequest) => {
-    const accessToken = await getAccessTokenSilently();
-    const response = await fetch(`${API_BASE_URL}/api/my/user`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
+    try {
+      const accessToken = await getAccessTokenSilently();
+      const response = await fetch(`${API_BASE_URL}/api/my/user`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
 
-    if (!response.ok) {
-      throw new Error("Failed to create user");
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Failed to create user:", errorData);
+        throw new Error("Failed to create user");
+      }
+
+      const data = await response.json();
+      sessionStorage.setItem("userId", data._id); // Store the user id in sessionStorage
+    } catch (error) {
+      console.error("Error creating user:", error);
     }
-
-    const data = await response.json();
-    sessionStorage.setItem("userId", data._id); // Store the user id in sessionStorage
   };
 
   const {

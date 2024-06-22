@@ -1,4 +1,4 @@
-import { CircleUserRound, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -23,11 +23,11 @@ const MobileNav = () => {
         <SheetTitle>
           {isAuthenticated ? (
             <span className="flex items-center font-bold gap-2">
-              <CircleUserRound className="text-orange-500" />
-              {user?.email}
+              <img src={`${user?.picture}`} alt="user avatar" className="w-[40px] rounded-full" />
+              {user?.name || user?.email}
             </span>
           ) : (
-            <span> Welcome to MernEats.com!</span>
+            <span> Welcome to FoodieFood!</span>
           )}
         </SheetTitle>
         <Separator />
@@ -39,7 +39,7 @@ const MobileNav = () => {
               onClick={() => loginWithRedirect()}
               className="flex-1 font-bold bg-orange-500"
             >
-              Log In
+              Sign In / Log In
             </Button>
           )}
         </SheetDescription>

@@ -10,7 +10,7 @@
     "start": "node dist/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "mouad akroubi",
   "license": "ISC",
   "dependencies": {
     "@types/multer": "^1.4.11",

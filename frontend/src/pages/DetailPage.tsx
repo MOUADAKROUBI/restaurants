@@ -11,6 +11,7 @@ import CheckoutButton from "@/components/CheckoutButton";
 import { UserFormData } from "@/forms/user-profile-form/UserProfileForm";
 import { useCreateCheckoutSession } from "@/api/OrderApi";
 import Loading from "./Loading";
+import { Helmet } from "react-helmet";
 
 export type CartItem = {
   _id: string;
@@ -110,6 +111,12 @@ const DetailPage = () => {
   }
 
   return (
+    <>
+    <Helmet>
+      <title>{restaurant.restaurantName} - FoodieFinds</title>
+      <meta name="description" content={`Discover the delicious menu and great atmosphere at ${restaurant.restaurantName}. Check out reviews and ratings on FoodieFinds.`} />
+      <meta name="keywords" content={`${restaurant.restaurantName}, restaurant, food, dining, FoodieFinds`} />
+    </Helmet>
     <div className="flex flex-col gap-10">
       <AspectRatio ratio={16 / 5}>
         <img
@@ -121,8 +128,9 @@ const DetailPage = () => {
         <div className="flex flex-col gap-4">
           <RestaurantInfo restaurant={restaurant} />
           <span className="text-2xl font-bold tracking-tight">Menu</span>
-          {restaurant.menuItems.map((menuItem) => (
+          {restaurant.menuItems.map((menuItem, index) => (
             <MenuItem
+              key={index}
               menuItem={menuItem}
               addToCart={() => addToCart(menuItem)}
             />
@@ -147,6 +155,7 @@ const DetailPage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

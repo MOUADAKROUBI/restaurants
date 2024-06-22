@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "./Loading";
 import SearchResultCard from "@/components/SearchResultCard";
+import { Restaurant } from "@/types";
+import { Helmet } from "react-helmet";
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const [results, setResults] = useState<Array<[]>>([]);
+  const [results, setResults] = useState<Array<Restaurant>>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -29,6 +31,12 @@ const HomePage = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Welcome to FoodieFinds - Discover the Best Restaurants Near You</title>
+        <meta name="description" content="FoodieFinds helps you discover the best dining experiences in your city. Browse top-rated restaurants, cafes, and more!" />
+        <meta name="keywords" content="restaurants, dining, food, cafes, top-rated, FoodieFinds" />
+      </Helmet>
+
       <div className="flex flex-col gap-12">
         <div className="md:px-32 bg-white rounded-lg shadow-md py-8 flex flex-col gap-5 text-center mt-10">
           <h1 className="text-5xl font-bold tracking-tight text-orange-600">
@@ -57,7 +65,6 @@ const HomePage = () => {
           )
         }
       </div>
-
     </>
   );
 };
